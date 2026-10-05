@@ -1,0 +1,19 @@
+# ---------------------------------------------------------------------------
+# monkey.jungle : description du build Connect IQ
+# Doc : https://developer.garmin.com/connect-iq/core-topics/build-configuration/
+# ---------------------------------------------------------------------------
+
+project.manifest = manifest.xml
+
+# Sources et ressources communes a tous les appareils
+base.sourcePath = source
+base.resourcePath = resources
+
+# Traductions (francais)
+base.lang.fre = resources-fre
+
+# Les dossiers resources-venu3 (454x454) et resources-venu3s (390x390) sont
+# pris en compte automatiquement par le compilateur (convention resources-<appareil>).
+
+# Verification de types : definie par l'option -l du compilateur (scripts\build.ps1)
+#   0 = off | 1 = gradual | 2 = informative | 3 = strict

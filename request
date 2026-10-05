@@ -1,0 +1,117 @@
+
+	•  resources-fre/, resources-venu3/, resources-venu3s/
+
+Outillage
+
+	•  scripts/ — build.ps1, run.ps1 (simulateur), package.ps1 (.iq), new-developer-key.ps1, ciq-common.ps1 (résolution auto du SDK via current-sdk.cfg ou $env:CIQ_SDK_HOME)
+	•  .vscode/ — launch.json (debug Venu 3 / 3S), tasks.json (Ctrl+Shift+B), settings.json, extension recommandée garmin.monkey-c
+	•  .gitignore (exclut bin/ et la clé développeur), README.md complet
+
+Vérifications sur votre poste : Java est présent (JRE Eclipse), mais le SDK Connect IQ n'est pas installé (%APPDATA%\Garmin\ConnectIQ\current-sdk.cfg absent).
+
+3 étapes à faire pour compiler :
+
+	1. Installer le Connect IQ SDK Manager, télécharger le SDK + les devices Venu 3 / Venu 3S.
+	2. .\scripts\new-developer-key.ps1 pour générer developer_key.der.
+	3. Ajouter resources/drawables/launcher_icon.png (60×60) et remplacer l'id du manifest par un UUID à vous.
+
+Ensuite : .\scripts\run.ps1 -Device venu3.
+
+
+Cadran (watchface) Venu 3 / Venu 3S
+
+	•  source/Venu3App.mc — point d'entrée
+	•  source/Venu3WatchFaceView.mc — date 9 - VEN, heure numérique, icône alarme (jaune si alarme programmée), 4 jauges circulaires, gestion veille AMOLED
+	•  source/WatchData.mc — pas, FC, Body Battery, stress, avec repli --
+	•  manifest.xml — watchface, venu3 + venu3s, API 5.0.0, permissions capteurs
+	•  resources/ (+ resources-fre, resources-venu3, resources-venu3s) — strings, réglage showAlarm, icône de lancement générée
+
+Outillage
+
+	•  scripts/ : build.ps1, run.ps1, package.ps1, new-developer-key.ps1, preview.ps1
+	•  .vscode/ : build/run/debug Venu 3 et Venu 3S + tâche d'aperçu
+	•  README.md, .gitignore
+
+Aperçus déjà générés (visualisables tout de suite, sans SDK) :
+
+	•  preview\venu3-preview-454.png (Venu 3)
+	•  preview\venu3-preview-390.png (Venu 3S)
+
+Ouvrez-les pour valider la mise en page ; si vous voulez décaler un élément (heure plus haute, jauges plus grandes, autres couleurs), dites-le et j'ajuste le code et l'aperçu.
+
+1. Tester dans le simulateur (sans la montre)
+
+Prérequis une seule fois : SDK Connect IQ installé (SDK Manager + devices Venu 3/3S) et clé développeur :
+cd E:\eclipse\PROJETS\Garmin
+.\scripts\new-developer-key.ps1
+Lancer le cadran :
+.\scripts\run.ps1 -Device venu3      # compile + ouvre le simulateur
+.\scripts\run.ps1 -Device venu3s     # vérifier le rendu sur l'écran 390 px
+
+Dans VS Code : F5 → Venu 3 - Simulateur (points d'arrêt, console de debug).
+
+Forcer les valeurs dans le simulateur : | Élément à vérifier | Menu | |---|---| | Icône alarme allumée | Settings > Alarm Count → 1 (0 = contour gris) | | Pas / objectif | Simulation > Activity Monitoring Data | | FC | Simulation > Health > Heart Rate | | Body Battery / Stress | Simulation > Health > Body Battery / Stress | | Date (DIM…SAM) | Simulation > Time | | 12 h / 24 h | Settings > 12/24 Hour Mode | | Veille AMOLED | Simulation > Trigger Watchface Sleep / Wake | | Réglage showAlarm | Settings > Edit Application Settings | | Mémoire | View > Memory Viewer |
+
+Sans SDK, .\scripts\preview.ps1 génère déjà une maquette PNG (preview\venu3-preview-454.png).
+
+2. Installer sur la montre
+
+J'ai ajouté `scripts/deploy.ps1` : la Venu 3 se monte en MTP (pas de lettre de lecteur), le script gère ce cas via l'API Shell de Windows.
+
+.\scripts\deploy.ps1 -Device venu3
+
+1. Brancher la Venu 3 en USB, la déverrouiller, accepter l'accès aux données.
+	2. Le script compile puis copie bin\Garmin-venu3.prg dans GARMIN\APPS.
+	3. Débrancher la montre.
+	4. Sur la montre : appui long sur le cadran → sélectionner le nouveau cadran, ou Paramètres > Apparence > Cadran de montre.
+
+Alternative manuelle : .\scripts\build.ps1 -Device venu3 puis glisser le .prg dans Internal Storage\GARMIN\APPS via l'Explorateur. Depuis VS Code : Tasks: Run Task → CIQ: Installer sur la montre (USB).
+
+3. Si ça ne marche pas
+
+	•  Cadran absent → le .prg doit être directement dans GARMIN\APPS, montre débranchée.
+	•  Erreur applicative → lire GARMIN\APPS\LOGS\CIQ_LOG.YAML sur la montre.
+	•  Jauges FC/BB/stress vides → autoriser les permissions capteurs dans Garmin Connect > Appareil > Connect IQ.
+	•  Build refusé → clé développeur manquante (new-developer-key.ps1).
+
+Pour une installation définitive (et sur d'autres montres), publier .\scripts\package.ps1 → bin\Garmin-Venu3.iq sur le Connect IQ Store. Tout est détaillé dans la section 7 du README.md.
+
+	
+powershell -ExecutionPolicy Bypass -File .\scripts\preview.ps1 -Size 390
+	
+powershell -ExecutionPolicy Bypass -File 'E:\eclipse\PROJETS\Garmin\scripts\preview.ps1' -Size 454; powershell -ExecutionPolicy Bypass -File  'E:\eclipse\PROJETS\Garmin\scripts\preview.ps1' -Size 3
+ 
+powershell -ExecutionPolicy Bypass -File 'E:\eclipse\PROJETS\Garmin\scripts\make-icons.ps1'; powershell -ExecutionPolicy Bypass -File 'E:\eclipse\PROJETS\Garmin\scripts\preview.ps1' -Size 454; powershell -ExecutionPolicy Bypass -File 'E:\eclipse\PROJETS\Garmin\scripts\preview.ps1' -Size 390
+ 	
+ 	
+powershell -ExecutionPolicy Bypass -File "E:\eclipse\PROJETS\Garmin\scripts\preview.ps1" -Size 454 	
+
+Le cadran peut afficher les éléments suivants :
+
+Date : numéro du jour et jour de la semaine en français, par exemple 9 - VEN.
+Heure : format HH:MM, selon le réglage 12 h ou 24 h de la montre.
+Alarme : icône indiquant si une alarme est active. Elle peut être masquée par le réglage showAlarm; en mode basse consommation, l’icône inactive est cachée.
+Batterie de la montre : arc vert de 90° en haut, dont la progression représente le pourcentage de charge. Le pourcentage n’est pas écrit en chiffres.
+Pas : nombre de pas et progression par rapport à l’objectif quotidien.
+Fréquence cardiaque : valeur en bpm; l’arc est normalisé entre 40 et 180 bpm.
+Body Battery : valeur sur 0–100, avec jauge verte.
+Stress : valeur sur 0–100, avec jauge orange.
+Les pas viennent du suivi d’activité, la fréquence cardiaque de l’activité en cours ou de l’historique, et le Body Battery et le stress de l’historique des capteurs. Si ces trois dernières données sont indisponibles, le cadran affiche -- et laisse leur jauge vide. Les valeurs et leur rendu sont gérés dans
+
+
+Déjà présentes dans le cadran
+
+Date et jour, heure et icône d’alarme
+Batterie de la montre : arc vert en haut
+Pas, fréquence cardiaque, Body Battery et stress : quatre jauges
+Altitude en mètres : en bas, avec le symbole de montagne mauve
+Autres métriques disponibles via les API Connect IQ
+
+Calories, distance, étages montés ou descendus, mètres montés ou descendus
+Minutes d’activité et objectif d’activité, niveau de la barre d’inactivité
+Fréquence respiratoire et temps de récupération
+Saturation en oxygène (SpO₂), pression barométrique et température
+Estimation de l’autonomie restante en jours
+La disponibilité de certaines valeurs dépend des données enregistrées, des permissions et du contexte. 
+À noter : le stress est bien prévu dans le cadran, mais sa lecture actuelle ne demande qu’une seule entrée d’historique; si celle-ci est absente, 
+la jauge affiche --. Détails dans

@@ -1,0 +1,56 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CIQ: Build Venu 3",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/build.ps1", "-Device", "venu3"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Build Venu 3S",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/build.ps1", "-Device", "venu3s"],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Run simulateur Venu 3",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/run.ps1", "-Device", "venu3"],
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Package .iq (store)",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/package.ps1"],
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Apercu du cadran (PNG, sans SDK)",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/preview.ps1", "-Size", "454"],
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Generer les pictogrammes PNG",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/make-icons.ps1"],
+            "problemMatcher": []
+        },
+        {
+            "label": "CIQ: Installer sur la montre (USB)",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/scripts/deploy.ps1", "-Device", "venu3"],
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+    Manifest Connect IQ - cadran (watchface) pour Garmin Venu 3 / Venu 3S.
+    - type="watchface"  : cadran de montre (vue = WatchUi.WatchFace)
+    - minApiLevel 5.0.0 : niveau d'API embarque par la Venu 3 (CIQ 5).
+-->
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <iq:application
+        id="7f3c9a21d84e4b5c8f26ad10e5b3c704"
+        type="watchface"
+        name="@Strings.AppName"
+        entry="Venu3App"
+        launcherIcon="@Drawables.LauncherIcon"
+        minApiLevel="5.0.0">
+
+        <!-- Appareils cibles -->
+        <iq:products>
+            <iq:product id="venu3"/>
+            <iq:product id="venu3s"/>
+        </iq:products>
+
+        <!-- Permissions necessaires aux jauges FC / Body Battery / Stress -->
+        <iq:permissions>
+            <iq:uses-permission id="SensorHistory"/>
+            <iq:uses-permission id="UserProfile"/>
+        </iq:permissions>
+
+        <!-- Langues supportees -->
+        <iq:languages>
+            <iq:language>eng</iq:language>
+            <iq:language>fre</iq:language>
+        </iq:languages>
+
+        <iq:barrels/>
+    </iq:application>
+</iq:manifest>

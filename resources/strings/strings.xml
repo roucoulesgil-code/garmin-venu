@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string id="AppName">Venu3 Digital</string>
+
+    <!-- Reglages Garmin Connect -->
+    <string id="SettingShowAlarm">Show alarm icon</string>
+    <string id="SettingAccentColor">Accent color</string>
+</resources>

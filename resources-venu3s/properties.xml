@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ressources specifiques Venu 3S (rond AMOLED 390 x 390, tactile + 3 boutons) -->
+<resources>
+    <properties>
+        <property id="deviceLabel" type="string">Venu 3S</property>
+    </properties>
+</resources>

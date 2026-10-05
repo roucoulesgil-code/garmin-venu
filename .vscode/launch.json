@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "monkeyc",
+            "request": "launch",
+            "name": "Venu 3 - Simulateur",
+            "stopAtLaunch": false,
+            "device": "venu3"
+        },
+        {
+            "type": "monkeyc",
+            "request": "launch",
+            "name": "Venu 3S - Simulateur",
+            "stopAtLaunch": false,
+            "device": "venu3s"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Icone de lancement (PNG 70 x 70, voir README).
+    -->
+    <bitmap id="LauncherIcon" filename="launcher_icon.png"/>
+
+    <!--
+        Pictogrammes des jauges, generes par scripts\make-icons.ps1
+        (Monkey C n'affiche pas les emojis : ce sont de vraies images).
+    -->
+    <bitmap id="IconSteps"  filename="icon_steps.png"/>
+    <bitmap id="IconHr"     filename="icon_hr.png"/>
+    <bitmap id="IconBb"     filename="icon_bb.png"/>
+    <bitmap id="IconStress" filename="icon_stress.png"/>
+
+    <!-- Cloche d'alarme (U+1F56D) : version allumee / eteinte -->
+    <bitmap id="IconAlarmOn"  filename="icon_alarm_on.png"/>
+    <bitmap id="IconAlarmOff" filename="icon_alarm_off.png"/>
+
+    <!-- Phases lunaires Segoe UI Emoji -->
+    <bitmap id="IconMoonNew"             filename="icon_moon_new.png"/>
+    <bitmap id="IconMoonWaxingCrescent"  filename="icon_moon_waxing_crescent.png"/>
+    <bitmap id="IconMoonFirstQuarter"    filename="icon_moon_first_quarter.png"/>
+    <bitmap id="IconMoonWaxingGibbous"   filename="icon_moon_waxing_gibbous.png"/>
+    <bitmap id="IconMoonFull"            filename="icon_moon_full.png"/>
+    <bitmap id="IconMoonWaningGibbous"   filename="icon_moon_waning_gibbous.png"/>
+    <bitmap id="IconMoonLastQuarter"      filename="icon_moon_last_quarter.png"/>
+    <bitmap id="IconMoonWaningCrescent"  filename="icon_moon_waning_crescent.png"/>
+
+    <!-- Previsions Zambretti Segoe UI Emoji -->
+    <bitmap id="IconWeatherStable"   filename="icon_weather_stable.png"/>
+    <bitmap id="IconWeatherFair"     filename="icon_weather_fair.png"/>
+    <bitmap id="IconWeatherClouds"   filename="icon_weather_clouds.png"/>
+    <bitmap id="IconWeatherVariable" filename="icon_weather_variable.png"/>
+    <bitmap id="IconWeatherShowers"  filename="icon_weather_showers.png"/>
+    <bitmap id="IconWeatherRain"     filename="icon_weather_rain.png"/>
+    <bitmap id="IconWeatherStorm"    filename="icon_weather_storm.png"/>
+</resources>
