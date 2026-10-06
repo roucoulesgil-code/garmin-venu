@@ -239,7 +239,7 @@ class Venu3WatchFaceView extends WatchUi.WatchFace {
             return; // rien a afficher en veille si aucune alarme
         }
 
-        var cx = (_width / 2 - 46).toNumber();
+        var cx = (_width / 2 - _width * 0.20).toNumber();
         var cy = (_height * 0.235).toNumber();
 
         // Pictogramme cloche U+1F56D (icon_alarm_on / icon_alarm_off)
@@ -293,7 +293,7 @@ class Venu3WatchFaceView extends WatchUi.WatchFace {
     private function drawZambrettiIcon(dc as Dc, state as Number or Null) as Void {
         if (state == null) { return; }
 
-        var cx = (_width / 2 + 46).toNumber();
+        var cx = (_width / 2 + _width * 0.20).toNumber();
         var cy = (_height * 0.235).toNumber();
         var icon = _iconWeatherStorm;
         if (state == 0) { icon = _iconWeatherStable; }
