@@ -19,7 +19,7 @@ $root   = Get-ProjectRoot
 $binDir = Join-Path $root 'bin'
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
 
-$output = Join-Path $binDir "Garmin-$Device.prg"
+$output = Join-Path $binDir "Garmin-venu-1-$Device.prg"
 
 $cmdArgs = @(
     '-f', (Join-Path $root 'monkey.jungle'),

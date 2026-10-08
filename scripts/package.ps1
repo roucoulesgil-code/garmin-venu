@@ -13,7 +13,7 @@ $root   = Get-ProjectRoot
 $binDir = Join-Path $root 'bin'
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
 
-$output = Join-Path $binDir 'Garmin-Venu3.iq'
+$output = Join-Path $binDir 'Garmin-venu-1.iq'
 
 Write-Host "Packaging du .iq ..." -ForegroundColor Cyan
 & (Get-CiqCompiler) `

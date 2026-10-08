@@ -21,6 +21,6 @@ if (-not (Get-Process -Name 'simulator' -ErrorAction SilentlyContinue)) {
     Start-Sleep -Seconds 5
 }
 
-$prg = Join-Path (Get-ProjectRoot) "bin\Garmin-$Device.prg"
+$prg = Join-Path (Get-ProjectRoot) "bin\Garmin-venu-1-$Device.prg"
 Write-Host "Chargement de $prg sur $Device ..." -ForegroundColor Cyan
 & (Get-CiqMonkeyDo) $prg $Device

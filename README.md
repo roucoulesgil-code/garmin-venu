@@ -3,6 +3,19 @@
 Projet Connect IQ (Monkey C) prêt à l'emploi : **watchface** pour **Garmin Venu 3**
 (`venu3`, 454 × 454) et **Venu 3S** (`venu3s`, 390 × 390).
 
+## Installation avec la version 2
+
+Ce projet est la version 1, affichee sous le nom **Garmin Venu 1**.
+Son identifiant Connect IQ reste `7f3c9a21d84e4b5c8f26ad10e5b3c704`.
+La version 2 utilise un identifiant distinct : les deux cadrans peuvent etre
+installes ensemble, avec leurs propres reglages. Un seul cadran est actif a la fois.
+
+Les compilations produisent `bin/Garmin-venu-1-venu3.prg` et
+`bin/Garmin-venu-1-venu3s.prg`; le paquet Store est `bin/Garmin-venu-1.iq`.
+Depuis chaque projet, lancer `./scripts/deploy.ps1 -Device venu3` (ou `venu3s`)
+pour installer sa version, puis choisir le cadran dans les reglages de la montre.
+Les anciens fichiers sans numero de version ne doivent plus etre utilises.
+
 ## Rendu du cadran
 
 ```
@@ -127,11 +140,11 @@ une copie hors dépôt (c'est elle qui identifie vos applis sur le store).
 
 ### En ligne de commande
 ```powershell
-.\scripts\build.ps1 -Device venu3          # compile -> bin\Garmin-venu3.prg
+.\scripts\build.ps1 -Device venu3          # compile -> bin\Garmin-venu-1-venu3.prg
 .\scripts\build.ps1 -Device venu3s
 .\scripts\run.ps1  -Device venu3           # compile + lance le simulateur
 .\scripts\test-zambretti.ps1 -Device venu3s # tests unitaires Zambretti dans le simulateur
-.\scripts\package.ps1                      # génère bin\Garmin-Venu3.iq (store)
+.\scripts\package.ps1                      # génère bin\Garmin-venu-1.iq (store)
 ```
 
 
@@ -232,7 +245,7 @@ Tout se règle dans `source/Venu3WatchFaceView.mc` :
 .\scripts\deploy.ps1 -Device venu3
 ```
 
-Le script compile puis copie `bin\Garmin-venu3.prg` dans `GARMIN\APPS` de la montre
+Le script compile puis copie `bin\Garmin-venu-1-venu3.prg` dans `GARMIN\APPS` de la montre
 (gère le mode MTP de la Venu 3, qui n'apparaît pas comme lecteur `E:\`).
 
 3. Débrancher la montre (elle redémarre l'inventaire des applis).
@@ -243,7 +256,7 @@ Le script compile puis copie `bin\Garmin-venu3.prg` dans `GARMIN\APPS` de la mon
 
 1. Compiler : `.\scripts\build.ps1 -Device venu3`
 2. Ouvrir l'Explorateur Windows → la montre apparaît sous *Ce PC* (ex. « Venu 3 »).
-3. Glisser `bin\Garmin-venu3.prg` dans `Internal Storage\GARMIN\APPS`.
+3. Glisser `bin\Garmin-venu-1-venu3.prg` dans `Internal Storage\GARMIN\APPS`.
 4. Débrancher, puis sélectionner le cadran sur la montre.
 
 ### Méthode C — depuis VS Code

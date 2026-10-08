@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string id="AppName">Venu3 Digital</string>
+    <string id="AppName">Garmin Venu 1</string>
 
     <!-- Reglages Garmin Connect -->
     <string id="SettingShowAlarm">Afficher l'icone alarme</string>

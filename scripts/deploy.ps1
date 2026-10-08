@@ -27,7 +27,7 @@ if (-not $SkipBuild) {
     & (Join-Path $PSScriptRoot 'build.ps1') -Device $Device
 }
 
-$prg = Join-Path (Get-ProjectRoot) "bin\Garmin-$Device.prg"
+$prg = Join-Path (Get-ProjectRoot) "bin\Garmin-venu-1-$Device.prg"
 if (-not (Test-Path $prg)) { throw "Fichier introuvable : $prg (lancez d'abord build.ps1)" }
 
 # 2. Cas 1 : montre montee comme disque amovible ---------------------------
